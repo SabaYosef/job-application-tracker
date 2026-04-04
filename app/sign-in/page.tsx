@@ -4,15 +4,30 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signIn } from "@/lib/auth/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  const result = await signIn.email({ email, password });
+  if (!result.error) router.push("/dashboard");
+}
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
       <Card className="w-full max-w-md border-gray-200 shadow-lg">
         <CardHeader className="space-y-1">
-            <form className="space-y-4">
+          
+          <CardTitle className="text-2xl font-bold text-black">Sign In</CardTitle>
+          <CardDescription className="text-gray-600">
+            Enter your credentials to access your account
+          </CardDescription>
+        </CardHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+              <form className="space-y-4">
   <div className="p-6 space-y-4">
     <div className="space-y-2">
       <Label htmlFor="email">Email</Label>
@@ -24,11 +39,6 @@ export default function SignIn() {
     </div>
   </div>
 </form>
-          <CardTitle className="text-2xl font-bold text-black">Sign In</CardTitle>
-          <CardDescription className="text-gray-600">
-            Enter your credentials to access your account
-          </CardDescription>
-        </CardHeader>
       </Card>
     </div>
   );
