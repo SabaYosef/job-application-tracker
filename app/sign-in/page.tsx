@@ -11,6 +11,8 @@ export default function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
   const result = await signIn.email({ email, password });
@@ -28,6 +30,11 @@ async function handleSubmit(e: React.FormEvent) {
         </CardHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
               <form className="space-y-4">
+                {error && (
+  <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+    {error}
+  </div>
+)}
   <div className="p-6 space-y-4">
     <div className="space-y-2">
       <Label htmlFor="email">Email</Label>
