@@ -4,10 +4,19 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CardContent } from "@/components/ui/card";
+import { signUp } from "@/lib/auth/auth-client";
+import { useRouter } from "next/navigation";
+
 export default function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  const result = await signUp.email({ name, email, password });
+  if (!result.error) router.push("/dashboard");
+}
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
@@ -18,6 +27,7 @@ export default function SignUp() {
             Create an account to start tracking your job applications
           </CardDescription>
         </CardHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
         <CardContent className="space-y-4">
   <div className="space-y-2">
     <Label htmlFor="name">Name</Label>
