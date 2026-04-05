@@ -11,6 +11,8 @@ export default function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 async function handleSubmit(e: React.FormEvent) {
   e.preventDefault();
@@ -29,6 +31,11 @@ async function handleSubmit(e: React.FormEvent) {
         </CardHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
         <CardContent className="space-y-4">
+            {error && (
+  <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+    {error}
+  </div>
+)}
   <div className="space-y-2">
     <Label htmlFor="name">Name</Label>
     <Input id="name" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)} required />
