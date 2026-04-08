@@ -3,3 +3,8 @@
     @apply border-border outline-ring/50;
   }
 }
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
