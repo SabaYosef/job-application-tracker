@@ -8,5 +8,13 @@ export default function Home() {
         </section>
       </main>
     </div>
+    <div className="flex flex-col items-center gap-4 mt-10">
+  <Link href="/sign-up">
+    <Button size="lg" className="h-12 px-8 text-lg font-medium">
+      Start for free <ArrowRight className="ml-2" />
+    </Button>
+  </Link>
+  <p className="text-sm text-muted-foreground">Free forever. No credit card required.</p>
+</div>
   );
 }
