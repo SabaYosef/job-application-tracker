@@ -1,3 +1,26 @@
+import { getSession } from "@/lib/auth/auth";
+import { redirect } from "next/navigation";
+async function getBoard(userId: string) {
+  "use cache";
+
+  await connectDB();
+
+  const boardDoc = await Board.findOne({
+    userId: userId,
+    name: "Job Hunt",
+  }).populate({
+    path: "columns",
+    populate: {
+      path: "jobApplications",
+    },
+  });
+
+  if (!boardDoc) return null;
+
+  const board = JSON.parse(JSON.stringify(boardDoc));
+
+  return board;
+}
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-white">
