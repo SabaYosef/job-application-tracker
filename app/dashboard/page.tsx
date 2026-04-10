@@ -1,5 +1,7 @@
 import { getSession } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
+import connectDB from "@/lib/db";
+import { Board } from "@/lib/models";
 async function getBoard(userId: string) {
   "use cache";
 
@@ -20,6 +22,12 @@ async function getBoard(userId: string) {
   const board = JSON.parse(JSON.stringify(boardDoc));
 
   return board;
+}
+async function DashboardPage() {
+  const session = await getSession();
+  if (!session?.user) redirect("/sign-in");
+  
+  
 }
 export default function Dashboard() {
   return (
