@@ -1,4 +1,8 @@
+"use client";
+import { useState } from "react";
+import { Button } from "./ui/button";
 export default function ImageTabs() {
+    const [activeTab, setActiveTab] = useState("organize");
   return (
     <section className="border-t bg-white py-16">
       <div className="container mx-auto px-4">
@@ -6,6 +10,11 @@ export default function ImageTabs() {
           {/* Content will go here */}
         </div>
       </div>
+      <div className="flex gap-2 justify-center mb-8">
+  <Button onClick={() => setActiveTab("organize")}>Organize Applications</Button>
+  <Button onClick={() => setActiveTab("hired")}>Get Hired</Button>
+  <Button onClick={() => setActiveTab("boards")}>Manage Boards</Button>
+</div>
     </section>
   );
 }
