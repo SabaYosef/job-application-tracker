@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { Button } from "./ui/button";
 export default function ImageTabs() {
     const [activeTab, setActiveTab] = useState("organize");
@@ -41,6 +42,11 @@ export default function ImageTabs() {
             >
               Manage Boards 
   </Button>
+</div>
+<div className="relative mx-auto max-w-5xl overflow-hidden rounded-lg border border-gray-200 shadow-xl">
+  {activeTab === "organize" && (
+    <Image src="/hero-images/hero1.png" alt="Organize" width={1200} height={800} />
+  )}
 </div>
     </section>
   );
