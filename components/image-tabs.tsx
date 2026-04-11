@@ -11,9 +11,36 @@ export default function ImageTabs() {
         </div>
       </div>
       <div className="flex gap-2 justify-center mb-8">
-  <Button onClick={() => setActiveTab("organize")}>Organize Applications</Button>
-  <Button onClick={() => setActiveTab("hired")}>Get Hired</Button>
-  <Button onClick={() => setActiveTab("boards")}>Manage Boards</Button>
+  <Button 
+    onClick={() => setActiveTab("organize")}
+              className={`rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === "organize"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Organize Applications
+  </Button>
+  <Button 
+  onClick={() => setActiveTab("hired")}
+              className={`rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === "hired"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Get Hired
+  </Button>
+  <Button
+  onClick={() => setActiveTab("boards")}
+              className={`rounded-lg px-6 py-3 text-sm font-medium transition-colors ${
+                activeTab === "boards"
+                  ? "bg-primary text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Manage Boards 
+  </Button>
 </div>
     </section>
   );
