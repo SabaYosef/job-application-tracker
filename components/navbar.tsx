@@ -12,6 +12,15 @@ export default function Navbar() {
         </Link>
         <div className="flex items-center gap-4">
           {/* Auth buttons will go here */}
+          {/* Inside the flex div: */}
+<>
+  <Link href="/sign-in">
+    <Button variant="ghost" className="text-gray-700 hover:text-black">Log In</Button>
+  </Link>
+  <Link href="/sign-up">
+    <Button className="bg-primary hover:bg-primary/90">Start for free</Button>
+  </Link>
+</>
         </div>
       </div>
     </nav>
