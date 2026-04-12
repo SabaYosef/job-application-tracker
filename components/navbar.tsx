@@ -22,6 +22,23 @@ export default function Navbar() {
                   Dashboard
                 </Button>
               </Link>
+              <DropdownMenu>
+  <DropdownMenuTrigger>
+    <Avatar className="h-8 w-8">
+      <AvatarFallback className="bg-primary text-white">
+        {session.user.name[0].toUpperCase()}
+      </AvatarFallback>
+    </Avatar>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent className="w-56" align="end">
+    <DropdownMenuLabel>
+      <div className="flex flex-col space-y-1">
+        <p className="text-sm font-medium leading-none">{session.user.name}</p>
+        <p className="text-xs leading-none text-muted-foreground">{session.user.email}</p>
+      </div>
+    </DropdownMenuLabel>
+  </DropdownMenuContent>
+</DropdownMenu>
 <>
   <Link href="/sign-in">
     <Button variant="ghost" className="text-gray-700 hover:text-black">Log In</Button>
