@@ -14,7 +14,9 @@ export default function SignOutButton() {
         if (result.data) {
           router.push("/sign-in");
         } else {
+          // --- THIS IS THE NEW PART FOR COMMIT 5 ---
           alert("Error signing out");
+          // -----------------------------------------
         }
       }}
     >
