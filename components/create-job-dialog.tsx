@@ -31,6 +31,14 @@ export default function CreateJobApplicationDialog({ columnId, boardId }: { colu
     <Input id="position" required value={formData.position} onChange={(e) => setFormData({ ...formData, position: e.target.value })} />
   </div>
 </div>
+<div className="space-y-2">
+  <Label htmlFor="jobUrl">Job URL</Label>
+  <Input id="jobUrl" type="url" value={formData.jobUrl} onChange={(e) => setFormData({ ...formData, jobUrl: e.target.value })} />
+</div>
+<div className="space-y-2">
+  <Label htmlFor="description">Description</Label>
+  <Textarea id="description" rows={3} value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
+</div>
       </DialogContent>
     </Dialog>
   );
