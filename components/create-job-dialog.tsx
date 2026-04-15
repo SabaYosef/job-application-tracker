@@ -3,9 +3,12 @@ import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { useState } from "react";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 export default function CreateJobApplicationDialog({ columnId, boardId }: { columnId: string, boardId: string }) {
   const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -18,6 +21,16 @@ export default function CreateJobApplicationDialog({ columnId, boardId }: { colu
           <DialogTitle>Add Job Application</DialogTitle>
           <DialogDescription>Track a new job application</DialogDescription>
         </DialogHeader>
+        <div className="grid grid-cols-2 gap-4">
+  <div className="space-y-2">
+    <Label htmlFor="company">Company *</Label>
+    <Input id="company" required value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })} />
+  </div>
+  <div className="space-y-2">
+    <Label htmlFor="position">Position *</Label>
+    <Input id="position" required value={formData.position} onChange={(e) => setFormData({ ...formData, position: e.target.value })} />
+  </div>
+</div>
       </DialogContent>
     </Dialog>
   );
