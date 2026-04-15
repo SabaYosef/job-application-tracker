@@ -5,10 +5,26 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { createJobApplication } from "@/lib/actions/job-applications";
 
 export default function CreateJobApplicationDialog({ columnId, boardId }: { columnId: string, boardId: string }) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  try {
+    const result = await createJobApplication({
+      ...formData,
+      columnId,
+      boardId,
+      tags: formData.tags.split(",").map(tag => tag.trim()).filter(tag => tag.length > 0),
+    });
+    if (!result.error) {
+      setFormData(INITIAL_FORM_DATA);
+      setOpen(false);
+    }
+  } catch (err) { console.error(err); }
+}
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
