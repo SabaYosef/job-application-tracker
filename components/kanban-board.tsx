@@ -149,3 +149,59 @@ function DroppableColumn({
     </Card>
   );
 }
+
+function SortableJobCard({
+  job,
+  columns,
+}: {
+  job: JobApplication;
+  columns: Column[];
+}) {
+  const {
+    attributes,
+    listeners,
+    transform,
+    transition,
+    isDragging,
+    setNodeRef,
+  } = useSortable({
+    id: job._id,
+    data: {
+      type: "job",
+      job,
+    },
+  });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+  return (
+    <div ref={setNodeRef} style={style}>
+      <JobApplicationCard
+        job={job}
+        columns={columns}
+        dragHandleProps={{ ...attributes, ...listeners }}
+      />
+    </div>
+  );
+}
+
+export default function KanbanBoard({ board, userId }: KanbanBoardProps) {
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const { columns, moveJob } = useBoard(board);
+
+  const sortedColumns = columns?.sort((a, b) => a.order - b.order) || [];
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  );
+
+  async function handleDragStart(event: DragStartEvent) {
+    setActiveId(event.active.id as string);
+  }
