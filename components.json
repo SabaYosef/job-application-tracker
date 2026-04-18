@@ -18,3 +18,5 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
+  "registries": {}
+}
